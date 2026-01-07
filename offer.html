@@ -4,120 +4,121 @@
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>কয়েন রেট - গরিবের কয়েন স্টোর</title>
+    <title>কয়েন রেট - গরিবের কয়ের স্টোর</title>
     <style>
         body { font-family: 'Arial', sans-serif; background-color: #0f172a; margin: 0; padding: 0; text-align: center; color: #fff; }
+        .container { padding: 40px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .home-btn { display: inline-block; margin-top: 20px; background: linear-gradient(45deg, #fe2c55, #25f4ee); color: white; padding: 12px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        .card { background: #1e293b; border-radius: 15px; padding: 25px; width: 260px; box-shadow: 0 4px 20px rgba(0, 243, 255, 0.1); border: 1px solid #334155; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); border-color: #00f3ff; }
+        .video-logo { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #00f3ff; margin-bottom: 15px; }
+        .coin-text { font-size: 28px; font-weight: bold; color: #FFD700; text-shadow: 0 0 1px #FFD700, 0 0 30px #FF8C00; }
+        .price { font-size: 26px; color: #39ff14; font-weight: bold; margin: 15px 0; text-shadow: 0 0 30px #39ff14, 0 0 20px #39ff14; }
+        .buy-btn { display: inline-block; background: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        .buy-btn:hover { background: #128C7E; transform: scale(1.05); }
         
-        /* কন্টেইনার যা সব কার্ডকে সুন্দর করে সাজাবে */
-        .container { 
-            padding: 40px 20px; 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 25px; 
-            max-width: 1200px;
-            margin: 0 auto;
+        /* অফার সেকশন স্টাইল */
+        .offer-container {
+            display:none ; /* অফার বন্ধ করতে এখানে block এর জায়গায় none লিখুন */
+            width: 100%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 25px;
+            background: #1e293b;
+            border-radius: 20px;
+            border: 2px dashed #fe2c55;
+            text-align: center;
         }
-        
-        /* বাটন ডিজাইন */
-        .home-btn {
+        .order-btn {
             display: inline-block;
-            margin-top: 20px;
-            background: linear-gradient(45deg, #fe2c55, #25f4ee);
+            margin-top: 15px;
+            padding: 15px 35px;
+            background-color: #fe2c55;
             color: white;
-            padding: 12px 30px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(254, 44, 85, 0.4);
-            transition: 0.3s;
+            animation: pulse 1.5s infinite;
         }
-        .home-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(37, 244, 238, 0.6); }
+        .old-price { text-decoration: line-through; color: #94a3b8; font-size: 18px; margin-left: 10px; }
 
-        /* কার্ড ডিজাইন */
-        .card { 
-            background: #1e293b; border-radius: 15px; padding: 25px; width: 260px;
-            box-shadow: 0 4px 20px rgba(0, 243, 255, 0.1); border: 1px solid #334155; transition: 0.3s;
-            display: flex; flex-direction: column; align-items: center; 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        .card:hover { transform: translateY(-10px); border-color: #00f3ff; box-shadow: 0 0 20px rgba(0, 243, 255, 0.3); }
 
-        .video-logo { width: 90px; height: 90px; border-radius: 50%; margin-bottom: 15px; object-fit: cover; border: 2px solid #00f3ff; }
-        
-        .coin-wrapper { display: flex; align-items: center; justify-content: center; margin: 5px 0; gap: 8px; }
-        
-        .coin-text { 
-            font-size: 28px; font-weight: bold; color: #00f3ff; 
-            text-shadow: 0 0 10px #00f3ff; line-height: 1; 
-        }
-        
-        .mini-logo { width: 30px; height: 30px; object-fit: contain; filter: drop-shadow(0 0 5px #00f3ff); }
-        
-        .price { font-size: 26px; color: #39ff14; font-weight: bold; margin: 15px 0; text-shadow: 0 0 5px #39ff14; }
-        
-        .buy-btn { 
-            display: inline-block; background: #25D366; color: white; padding: 12px 20px; 
-            text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s;
-            box-shadow: 0 0 10px rgba(37, 211, 102, 0.3); font-size: 14px;
-        }
-        .buy-btn:hover { background: #128C7E; transform: scale(1.05); box-shadow: 0 0 20px #25D366; }
-
-        footer { margin-top: 50px; padding: 20px; background: #000; color: white; border-top: 1px solid #334155; }
+        footer { margin-top: 50px; padding: 20px; background: #000; border-top: 1px solid #334155; }
     </style>
 </head>
 <body>
 
-    <a href="index.html"> class="home-btn">🏠 হোমে ফিরে যান</a>
-
+    <a href="index.html" class="home-btn">🏠 হোমে ফিরে যান</a>
     <h2 style="margin-top: 30px; color: #00f3ff;">আপনার পছন্দের প্যাকেজটি বেছে নিন</h2>
 
     <div class="container">
+        <div class="offer-container">
+            <h2 style="color: #fe2c55;">🔥 ধামাকা অফার! 🔥</h2>
+            <p>আজকের জন্য বিশেষ ছাড়ে টিকটক কয়েন কিনুন।</p>
+            <div class="coin-card">
+                <h3 style="color: #FFD700;">১০০০ কয়েন</h3>
+                <p class="price">৳ ৯৫০ <span class="old-price">৳ ১১০০</span></p>
+                <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ধামাকা অফার ১০০০ কয়েন ৯৫০৳ নিতে চাই" class="order-btn">এখনই অর্ডার করুন</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
+            <span class="coin-text">৫ কয়েন</span>
+            <p class="price">১০ ৳</p>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৫ কয়েন ১০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+        </div>
+
+        <div class="card">
+            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
+            <span class="coin-text">৭০ কয়েন</span>
+            <p class="price">১৪০ ৳</p>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৭০ কয়েন ১৪০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+        </div>
         
         <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" alt="Logo" class="video-logo">
-            <div class="coin-wrapper">
-                <span class="coin-text">৭০</span>
-                <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="mini-logo" alt="Coin Logo">
-            </div>
-            <p class="price">১০০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=বস, আমি ৭০ কয়েন কিনতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
+            <span class="coin-text">৩৫০ কয়েন</span>
+            <p class="price">৬৯০ ৳</p>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৩৫০ কয়েন ৬৯০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-
+        
         <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" alt="Logo" class="video-logo">
-            <div class="coin-wrapper">
-                <span class="coin-text">৩৫০</span>
-                <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="mini-logo" alt="Coin Logo">
-            </div>
-            <p class="price">৫০০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=বস, আমি ৩৫০ কয়েন কিনতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
+            <span class="coin-text">৭০০ কয়েন</span>
+            <p class="price">১,৩৮০ ৳</p>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৭০০ কয়েন ১,৩৮০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" alt="Logo" class="video-logo">
-            <div class="coin-wrapper">
-                <span class="coin-text">৭০০</span>
-                <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="mini-logo" alt="Coin Logo">
-            </div>
-            <p class="price">১০০০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=বস, আমি ৭০০ কয়েন কিনতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+        
+          <div class="card">
+            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
+            <span class="coin-text">১,৪০০ কয়েন</span>
+            <p class="price">২,৭৬০ ৳</p>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ১,৪০০ কয়েন ২,৭৬০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" alt="Logo" class="video-logo">
-            <div class="coin-wrapper">
-                <span class="coin-text">১৪০০</span>
-                <img src="https://i.ibb.co.com/mFrpZ2sq/coin-logo.jpg" class="mini-logo" alt="Coin Logo">
-            </div>
-            <p class="price">২০০০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=বস, আমি ১৪০০ কয়েন কিনতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+        
+                <div class="card">
+            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
+            <span class="coin-text">৩,৫০০ কয়েন</span>
+            <p class="price">৬,৯০০ ৳</p>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৩,৫০০ কয়েন ৬,৯০০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-
+        
+                <div class="card">
+            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
+            <span class="coin-text">৭,০০০ কয়েন</span>
+            <p class="price">১৩,৮০০ ৳</p>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৭,০০০ কয়েন ১৩,৮০০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+        </div>
+        
     </div>
 
-    <footer>
-        <p>&copy; 2026 TikTok Coin Store | Managed by Boss</p>
-    </footer>
-
+    <footer><p>&copy; 2026 TikTok Coin Store | Managed by Boss</p></footer>
 </body>
 </html>
+
