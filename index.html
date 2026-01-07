@@ -18,94 +18,67 @@
             overflow-x: hidden;
             text-align: center;
         }
-        
-        /* হেডার */
-        .warning-header {
-            background: #fe2c55; 
-            color: #ffffff; 
-            padding: 15px; 
+        /* ২১ নম্বর লাইন থেকে শুরু */
+        .order-page-btn { 
+            background: linear-gradient(45deg, #fe2c55, #25f4ee); 
+            color: white; 
+            padding: 15px 35px; 
             font-size: 18px; 
             font-weight: bold; 
-            border-bottom: 5px solid #000; 
-        }
-
-        /* টাইটেল অ্যানিমেশন */
-        .main-title {
-            margin-top: 30px;
-            background: linear-gradient(to right, #fe2c55, #25f4ee, #fe2c55);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 32px;
-            font-weight: bold;
-            animation: moveGradient 3s linear infinite;
-        }
-
-        @keyframes moveGradient {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        /* বাটন স্টাইল (অ্যানিমেশনের নিচে) */
-        .nav-container { margin: 20px 0 30px 0; }
-        .order-page-btn {
-            background: linear-gradient(45deg, #fe2c55, #25f4ee);
-            color: white;
-            padding: 15px 35px;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 50px;
-            display: inline-block;
-            box-shadow: 0 0 15px rgba(254, 44, 85, 0.4);
-            transition: 0.3s ease;
+            text-decoration: none; 
+            border-radius: 50px; 
+            display: inline-block; 
+            box-shadow: 0 0 15px rgba(254, 44, 85, 0.4); 
+            transition: 0.3s ease; 
             border: none;
-        }
-        .order-page-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(37, 244, 238, 0.6);
-        }
-
-        /* ইনফো বক্স */
-        .info-container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 30px;
-            background: #1e293b;
-            border-radius: 20px;
-            border: 1px solid #334155;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            animation: buttonPulse 2s infinite; 
         }
 
+        /* এটি তার ঠিক নিচেই বসিয়ে দিন */
+        @keyframes buttonPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); box-shadow: 0 0 25px rgba(37, 244, 238, 0.6); }
+            100% { transform: scale(1); }
+        }
+
+        .order-page-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotate(30deg);
+            animation: shineEffect 3s infinite;
+        }
+
+        @keyframes shineEffect {
+            0% { left: -60%; }
+            20% { left: 120%; }
+            100% { left: 120%; }
+        }
+        /* ২৫ নম্বর লাইনের কাজ শেষ */
+        .order-page-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(37, 244, 238, 0.6); }
+        .info-container { max-width: 800px; margin: 30px auto; padding: 30px; background: #1e293b; border-radius: 20px; border: 1px solid #334155; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .info-title-box h2 { color: #00f3ff; font-size: 24px; margin-bottom: 10px; }
         .divider { height: 3px; width: 60px; background: #00f3ff; margin: 0 auto 25px auto; border-radius: 5px; }
-
-        /* লিস্ট স্টাইল */
         .safety-list { list-style: none; padding: 0; margin: 0; text-align: left; }
-        .safety-list li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            background: rgba(255,255,255,0.05);
-            padding: 12px 15px;
-            border-radius: 10px;
-            border-left: 4px solid #00f3ff;
-        }
+        .safety-list li { margin-bottom: 12px; display: flex; align-items: center; background: rgba(255,255,255,0.05); padding: 12px 15px; border-radius: 10px; border-left: 4px solid #00f3ff; }
         .icon { color: #00f3ff; margin-right: 12px; }
-
         footer { margin-top: 50px; padding: 25px; background: #000; color: #94a3b8; border-top: 1px solid #334155; }
     </style>
 </head>
 <body>
 
-<div class="warning-header">
-    ওয়েব সাইটটি এখনো চালু হয়নি, দয়া করে কেউ এখান থেকে অর্ডার করবেন না।
-</div>
-
-<h1 class="main-title">সেরা দামে টিকটক কয়েন কিনুন!</h1>
+<!--   <div class="warning-header">ওয়েব সাইটটি এখনো চালু হয়নি, দয়া করে কেউ এখান থেকে অর্ডার করবেন না।</div>  -->
+ 
+ <h1 class="main-title">সেরা দামে টিকটক কয়েন কিনুন!</h1>
 
 <div class="nav-container">
-    <a href="offer.html"> class="order-page-btn">🛒 কয়েন রেট দেখতে এখানে ক্লিক করুন</a>
+    <a href="offer.html" class="order-page-btn">🛒 কয়েন রেট দেখতে এখানে ক্লিক করুন</a>
 </div>
 
 <div class="info-container">
@@ -113,29 +86,22 @@
         <h2>আমরা দিচ্ছি শতভাগ 🛡️ নিরাপত্তা ও নিশ্চয়তা</h2>
         <div class="divider"></div>
     </div>
-    
     <ul class="safety-list">
-        <li><span class="icon">🔹</span> ১. আপনার আইডির নিরাপত্তা আমাদের কাছে আমানত।</li>
-        <li><span class="icon">🔹</span> ২. শতভাগ লিগ্যাল সোর্স থেকে কয়েন সরবরাহ, আইডি ফ্রিজ হওয়ার ঝুঁকি নেই।</li>
-        <li><span class="icon">🔹</span> ৩. নিরাপদ লেনদেনের নিশ্চয়তা নিয়ে প্রতিটি অর্ডারের সাথে আছি।</li>
-        <li><span class="icon">🔹</span> ৪. টিকটক গাইডলাইন মেনে লিগ্যাল পদ্ধতিতে রিচার্জ।</li>
-        <li><span class="icon">🔹</span> ৫. আপনার ব্যক্তিগত তথ্যের গোপনীয়তা রক্ষা করা হয়।</li>
-        <li><span class="icon">🔹</span> ৬. আমাদের মাধ্যমে কয়েন রিচার্জ মানেই দুশ্চিন্তামুক্ত লেনদেন।</li>
-        <li><span class="icon">🔹</span> ৭. একবার সার্ভিস ব্যবহার করলেই আস্থার জায়গাটি বুঝতে পারবেন।</li>
-        <li><span class="icon">🔹</span> ৮. ডেলিভারি না হওয়া পর্যন্ত পেমেন্টের পূর্ণ নিশ্চয়তা।</li>
-        <li><span class="icon">🔹</span> ৯. পরিচ্ছন্ন লেনদেন এবং স্বচ্ছ ডেলিভারি—আমাদের মূল শক্তি।</li>
-        <li><span class="icon">🔹</span> ১০. আপনার প্রিয় আইডির সুরক্ষায় আমরা সদা জাগ্রত।</li>
+    <li><span class="icon">🔹</span> ১. আপনার আইডির নিরাপত্তা আমাদের কাছে আমানত।</li>
+    <li><span class="icon">🔹</span> ২. শতভাগ লিগ্যাল সোর্স থেকে কয়েন সরবরাহ, আইডি ফ্রিজ হওয়ার কোনো ঝুঁকি নেই।</li>
+    <li><span class="icon">🔹</span> ৩. নিরাপদ লেনদেনের নিশ্চয়তা নিয়ে আমরা আছি আপনার প্রতিটি অর্ডারের সাথে।</li>
+    <li><span class="icon">🔹</span> ৪. টিকটক গাইডলাইন মেনে লিগ্যাল পদ্ধতিতে রিচার্জ, আপনার আইডি থাকবে চিরকাল সুরক্ষিত।</li>
+    <li><span class="icon">🔹</span> ৫. কোনো আইডি হ্যাক হওয়ার ভয় নেই, কারণ আমরা আপনার ব্যক্তিগত তথ্যের গোপনীয়তা রক্ষা করি।</li>
+    <li><span class="icon">🔹</span> ৬. আমাদের মাধ্যমে কয়েন রিচার্জ করা মানেই দুশ্চিন্তামুক্ত লেনদেনের নিশ্চিয়তা।</li>
+    <li><span class="icon">🔹</span> ৭. একবার আমাদের সার্ভিস ব্যবহার করে দেখুন, আপনার আস্থার জায়গাটি আমরাই হবো।</li>
+    <li><span class="icon">🔹</span> ৮. আপনার পেমেন্ট আমাদের কাছে আমানত, অর্ডার ডেলিভারি না হওয়া পর্যন্ত আমরা দায়বদ্ধ।</li>
+    <li><span class="icon">🔹</span> ৯. পরিচ্ছন্ন লেনদেন এবং স্বচ্ছ ডেলিভারি—এটাই আমাদের ব্যবসার মূল চালিকাশক্তি।</li>
+    <li><span class="icon">🔹</span> ১০. নিরাপদ থাকুন, নিশ্চিন্তে থাকুন—আপনার প্রিয় আইডির সুরক্ষায় আমরা সদা জাগ্রত।</li>
+
     </ul>
-    
-    <p style="margin-top: 25px; text-align: center; font-style: italic; color: #94a3b8; font-size: 14px; border-top: 1px solid #334155; padding-top: 15px;">
-        "আপনার আস্থাই আমাদের এগিয়ে চলার প্রেরণা।"
-    </p>
 </div>
 
-<footer>
-    <p>&copy; 2026 TikTok Coin Store | Managed by Boss</p>
-</footer>
-
+<footer><p>&copy; 2026 TikTok Coin Store | Managed by Boss</p></footer>
 </body>
 </html>
 
