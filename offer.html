@@ -9,25 +9,46 @@
         body { font-family: 'Arial', sans-serif; background-color: #0f172a; margin: 0; padding: 0; text-align: center; color: #fff; }
         .container { padding: 40px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; max-width: 1200px; margin: 0 auto; }
         .home-btn { display: inline-block; margin-top: 20px; background: linear-gradient(45deg, #fe2c55, #25f4ee); color: white; padding: 12px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
-        .card { background: #1e293b; border-radius: 15px; padding: 25px; width: 260px; box-shadow: 0 4px 20px rgba(0, 243, 255, 0.1); border: 1px solid #334155; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); border-color: #00f3ff; }
-        .video-logo { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #00f3ff; margin-bottom: 15px; }
-        .coin-text { font-size: 28px; font-weight: bold; color: #FFD700; text-shadow: 0 0 1px #FFD700, 0 0 30px #FF8C00; }
-        .price { font-size: 26px; color: #39ff14; font-weight: bold; margin: 15px 0; text-shadow: 0 0 30px #39ff14, 0 0 20px #39ff14; }
-        .buy-btn { display: inline-block; background: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
-        .buy-btn:hover { background: #128C7E; transform: scale(1.05); }
         
-        /* অফার সেকশন স্টাইল */
+        /* আরজিবি এনিমেশন */
+        @keyframes rgbGlow {
+            0% { border-color: #fe2c55; box-shadow: 0 0 10px #fe2c55; }
+            33% { border-color: #25f4ee; box-shadow: 0 0 15px #25f4ee; }
+            66% { border-color: #FFD700; box-shadow: 0 0 10px #FFD700; }
+            100% { border-color: #fe2c55; box-shadow: 0 0 10px #fe2c55; }
+        }
+
+        .card { 
+            background: #1e293b; 
+            border-radius: 15px; 
+            padding: 25px; 
+            width: 260px; 
+            border: 2px solid #334155; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            transition: 0.3s;
+            animation: rgbGlow 3s linear infinite; /* আরজিবি লাইট জ্বলবে */
+        }
+        .card:hover { transform: translateY(-10px); filter: brightness(1.2); box-shadow: 0 0 30px rgba(0, 243, 255, 0.5); }
+        
+        .video-logo { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #00f3ff; margin-bottom: 15px; }
+        .coin-text { font-size: 28px; font-weight: bold; color: #FFD700; text-shadow: 0 0 15px #FF8C00; }
+        .price { font-size: 26px; color: #39ff14; font-weight: bold; margin: 15px 0; text-shadow: 0 0 15px #39ff14; }
+        .buy-btn { display: inline-block; background: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        
+        /* ধামাকা অফার কার্ড */
         .offer-container {
-            display:none ; /* অফার বন্ধ করতে এখানে block এর জায়গায় none লিখুন */
-            width: 100%;
+            display: block; 
+            width: 90%;
             max-width: 600px;
             margin: 30px auto;
             padding: 25px;
             background: #1e293b;
             border-radius: 20px;
-            border: 2px dashed #fe2c55;
+            border: 3px solid #fe2c55;
             text-align: center;
+            animation: rgbGlow 1.5s linear infinite; /* এটি একটু দ্রুত জ্বলবে */
         }
         .order-btn {
             display: inline-block;
@@ -42,12 +63,7 @@
         }
         .old-price { text-decoration: line-through; color: #94a3b8; font-size: 18px; margin-left: 10px; }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         footer { margin-top: 50px; padding: 20px; background: #000; border-top: 1px solid #334155; }
     </style>
 </head>
@@ -58,12 +74,12 @@
 
     <div class="container">
         <div class="offer-container">
-            <h2 style="color: #fe2c55;">🔥 ধামাকা অফার! 🔥</h2>
+            <h2 style="color: #fe2c55; animation: pulse 1s infinite;">🔥 ধামাকা অফার! 🔥</h2>
             <p>আজকের জন্য বিশেষ ছাড়ে টিকটক কয়েন কিনুন।</p>
             <div class="coin-card">
                 <h3 style="color: #FFD700;">১০০০ কয়েন</h3>
                 <p class="price">৳ ৯৫০ <span class="old-price">৳ ১১০০</span></p>
-                <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ধামাকা অফার ১০০০ কয়েন ৯৫০৳ নিতে চাই" class="order-btn">এখনই অর্ডার করুন</a>
+                <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%A7%E0%A6%BE%E0%A6%95%E0%A6%BE%20%E0%A6%93%E0%A6%AB%E0%A6%BE%E0%A6%B0%20%E0%A7%A7%E0%A7%A6%E0%A7%A6%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%AF%E0%A7%AB%E0%A7%A6%E0%A7%B3%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="order-btn">এখনই অর্ডার করুন</a>
             </div>
         </div>
 
@@ -71,51 +87,50 @@
             <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
             <span class="coin-text">৫ কয়েন</span>
             <p class="price">১০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৫ কয়েন ১০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%AB%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A7%E0%A7%A6%E0%A7%B3%20%E0%A6%82%E0%A6%87%20%E0%A6%85%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A6%9F%E0%A6%BF%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
 
         <div class="card">
             <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
             <span class="coin-text">৭০ কয়েন</span>
             <p class="price">১৪০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৭০ কয়েন ১৪০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%AD%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A7%E0%A7%AD%E0%A7%A6%E0%A7%B3%20%E0%A6%82%E0%A6%87%20%E0%A6%85%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A6%9F%E0%A6%BF%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-        
+
         <div class="card">
             <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
             <span class="coin-text">৩৫০ কয়েন</span>
             <p class="price">৬৯০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৩৫০ কয়েন ৬৯০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%A9%E0%A7%AB%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%AD%E0%A7%AF%E0%A7%A6%E0%A7%B3%20%E0%A6%82%E0%A6%87%20%E0%A6%85%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A6%9F%E0%A6%BF%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-        
+
         <div class="card">
             <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
             <span class="coin-text">৭০০ কয়েন</span>
             <p class="price">১,৩৮০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৭০০ কয়েন ১,৩৮০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%AD%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A7%E0%A7%A9%E0%A7%AE%E0%A7%A6%E0%A7%B3%20%E0%A6%82%E0%A6%87%20%E0%A6%85%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A6%9F%E0%A6%BF%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-        
-          <div class="card">
+
+        <div class="card">
             <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
             <span class="coin-text">১,৪০০ কয়েন</span>
             <p class="price">২,৭৬০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ১,৪০০ কয়েন ২,৭৬০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%A7%E0%A7%AA%E0%A7%A6%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A8%E0%A7%AD%E0%A7%AC%E0%A7%A6%E0%A7%B3%20%E0%A6%82%E0%A6%87%20%E0%A6%85%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A6%9F%E0%A6%BF%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-        
-                <div class="card">
+
+        <div class="card">
             <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
             <span class="coin-text">৩,৫০০ কয়েন</span>
             <p class="price">৬,৯০০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৩,৫০০ কয়েন ৬,৯০০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%A9%E0%A7%AB%E0%A7%A6%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%AD%E0%A7%AF%E0%A7%A6%E0%A7%A6%E0%A7%B3%20%E0%A6%82%E0%A6%87%20%E0%A6%85%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A6%9F%E0%A6%BF%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-        
-                <div class="card">
+
+        <div class="card">
             <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
             <span class="coin-text">৭,০০০ কয়েন</span>
             <p class="price">১৩,৮০০ ৳</p>
-            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=আমি ৭,০০০ কয়েন ১৩,৮০০৳ এই অফারটি নিতে চাই" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
+            <a href="https://wa.me/message/CVTAZZL3IOZWG1?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%AD%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A7%E0%A7%A9%E0%A7%AE%E0%A7%A6%E0%A7%A6%E0%A7%B3%20%E0%A6%82%E0%A6%87%20%E0%A6%85%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A6%9F%E0%A6%BF%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">WhatsApp এ অর্ডার দিন</a>
         </div>
-        
     </div>
 
     <footer><p>&copy; 2026 TikTok Coin Store | Managed by Boss</p></footer>
