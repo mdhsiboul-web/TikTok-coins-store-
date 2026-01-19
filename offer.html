@@ -8,27 +8,10 @@
     <style>
         body { font-family: 'Arial', sans-serif; background-color: #0f172a; margin: 0; padding: 0; text-align: center; color: #fff; }
         .container { padding: 40px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; max-width: 1200px; margin: 0 auto; }
-        
-        /* 🔥 আরজিবি হোম বাটন */
-        .home-btn { 
-            display: inline-block; margin-top: 25px; background: #1e293b; color: #fff; padding: 12px 35px; 
-            text-decoration: none; border-radius: 50px; font-weight: bold; border: 2px solid #fe2c55;
-            transition: 0.4s; box-shadow: 0 0 15px rgba(254, 44, 85, 0.4);
-            animation: homeGlow 2s linear infinite; 
-        }
+        .home-btn { display: inline-block; margin-top: 25px; background: #1e293b; color: #fff; padding: 12px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; border: 2px solid #fe2c55; transition: 0.4s; box-shadow: 0 0 15px rgba(254, 44, 85, 0.4); animation: homeGlow 2s linear infinite; }
         .home-btn:hover { transform: scale(1.1); background: linear-gradient(45deg, #fe2c55, #25f4ee); color: #000; }
-
-        /* আরজিবি এনিমেশন */
-        @keyframes rgbGlow {
-            0% { border-color: #fe2c55; box-shadow: 0 0 10px #fe2c55; }
-            33% { border-color: #25f4ee; box-shadow: 0 0 15px #25f4ee; }
-            66% { border-color: #FFD700; box-shadow: 0 0 10px #FFD700; }
-            100% { border-color: #fe2c55; box-shadow: 0 0 10px #fe2c55; }
-        }
-        @keyframes homeGlow {
-            0% { border-color: #fe2c55; } 50% { border-color: #25f4ee; } 100% { border-color: #fe2c55; }
-        }
-
+        @keyframes rgbGlow { 0% { border-color: #fe2c55; box-shadow: 0 0 10px #fe2c55; } 33% { border-color: #25f4ee; box-shadow: 0 0 15px #25f4ee; } 66% { border-color: #FFD700; box-shadow: 0 0 10px #FFD700; } 100% { border-color: #fe2c55; box-shadow: 0 0 10px #fe2c55; } }
+        @keyframes homeGlow { 0% { border-color: #fe2c55; } 50% { border-color: #25f4ee; } 100% { border-color: #fe2c55; } }
         .card { background: #1e293b; border-radius: 15px; padding: 25px; width: 260px; border: 2px solid #334155; display: flex; flex-direction: column; align-items: center; transition: 0.3s; animation: rgbGlow 3s linear infinite; }
         .card:hover { transform: translateY(-10px); filter: brightness(1.2); }
         .video-logo { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #00f3ff; margin-bottom: 15px; }
@@ -36,7 +19,9 @@
         .price { font-size: 26px; color: #39ff14; font-weight: bold; margin: 15px 0; }
         .buy-btn { display: inline-block; background: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; }
         
-        .offer-container { width: 90%; max-width: 600px; margin: 30px auto; padding: 25px; background: #1e293b; border-radius: 20px; border: 3px solid #fe2c55; text-align: center; animation: rgbGlow 1.5s linear infinite; }
+        /* ধামাকা অফার কন্টেইনার - শুরুতে হাইড থাকবে */
+        #dhamaka-container { width: 90%; max-width: 600px; margin: 30px auto; padding: 25px; background: #1e293b; border-radius: 20px; border: 3px solid #fe2c55; text-align: center; animation: rgbGlow 1.5s linear infinite; display: none; }
+        
         .order-btn { display: inline-block; margin-top: 15px; padding: 15px 35px; background-color: #fe2c55; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; }
         .old-price { text-decoration: line-through; color: #94a3b8; font-size: 18px; margin-left: 10px; }
         footer { margin-top: 50px; padding: 20px; background: #000; }
@@ -48,65 +33,51 @@
     <h2 style="margin-top: 30px; color: #00f3ff;">আপনার পছন্দের প্যাকেজটি বেছে নিন</h2>
 
     <div class="container">
-        <div class="offer-container">
+        <div id="dhamaka-container">
             <h2 style="color: #fe2c55;">🔥 ধামাকা অফার! 🔥</h2>
             <div class="coin-card">
                 <h3 style="color: #FFD700;">১০০০ কয়েন</h3>
-                <p class="price">৳ ৯৫০ <span class="old-price">৳ ১১০০</span></p>
-                <a href="https://api.whatsapp.com/send?phone=8801613221379&text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%A7%E0%A6%BE%E0%A6%AE%E0%A6%BE%E0%A6%95%E0%A6%BE%20%E0%A6%93%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A7%87%20%E0%A7%A7%E0%A7%A6%E0%A7%A6%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%AF%E0%A7%AB%E0%A7%A6%E0%A7%B3%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="order-btn">এখনই অর্ডার করুন</a>
+                <p class="price"><span id="price1">লোডিং...</span> <span class="old-price">৳ ১১০০</span></p>
+                <a href="https://wa.me/8801613221379" class="order-btn">এখনই অর্ডার করুন</a>
             </div>
         </div>
 
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
-            <span class="coin-text">৫ কয়েন</span> <p class="price">১০ ৳</p>
-            <a href="https://api.whatsapp.com/send?phone=8801613221379&text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%AB%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A7%E0%A7%A6%E0%A7%B3%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">অর্ডার দিন</a>
-        </div>
-
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
-            <span class="coin-text">৭০ কয়েন</span> <p class="price">১৪০ ৳</p>
-            <a href="https://api.whatsapp.com/send?phone=8801613221379&text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%AD%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A7%E0%A7%AD%E0%A7%A6%E0%A7%B3%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">অर्डर দিন</a>
-        </div>
-
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
-            <span class="coin-text">৩৫০ কয়েন</span> <p class="price">৬৯০ ৳</p>
-            <a href="https://api.whatsapp.com/send?phone=8801613221379&text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%A9%E0%A7%AB%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%AD%E0%A7%AF%E0%A7%A6%E0%A7%B3%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">অর্ডার দিন</a>
-        </div>
-
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
-            <span class="coin-text">৭০০ কয়েন</span> <p class="price">১,৩৮০ ৳</p>
-            <a href="https://api.whatsapp.com/send?phone=8801613221379&text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%AD%E0%A7%A6%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A7%E0%A7%A9%E0%A7%AE%E0%A7%A6%E0%A7%B3%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">অর্ডার দিন</a>
-        </div>
-
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
-            <span class="coin-text">১,৪০০ কয়েন</span> <p class="price">২,৭৬০ ৳</p>
-            <a href="https://api.whatsapp.com/send?phone=8801613221379&text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%A7%E0%A7%AA%E0%A7%A6%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A8%E0%A7%AD%E0%A7%AC%E0%A7%A6%E0%A7%B3%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">অর্ডার দিন</a>
-        </div>
-
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
-            <span class="coin-text">৩,৫০০ কয়েন</span> <p class="price">৬,৯০০ ৳</p>
-            <a href="https://api.whatsapp.com/send?phone=8801613221379&text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%A9%E0%A7%AB%E0%A7%A6%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%AD%E0%A7%AF%E0%A7%A6%E0%A7%A6%E0%A7%B3%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">অর্ডার দিন</a>
-        </div>
-
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
-            <span class="coin-text">৭,০০০ কয়েন</span> <p class="price">১৩,৮০০ ৳</p>
-            <a href="https://api.whatsapp.com/send?phone=8801613221379&text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A7%AD%E0%A7%A6%E0%A7%A6%20%E0%A6%95%E0%A7%9F%E0%A7%87%E0%A6%A8%20%E0%A7%A7%E0%A7%A9%E0%A7%AE%E0%A7%A6%E0%A7%A6%E0%A7%B3%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">অর্ডার দিন</a>
-        </div>
-
-        <div class="card">
-            <img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo" alt="Logo">
-            <span class="coin-text">অন্যান্য</span> <p class="price">বড় অফার</p>
-            <a href="https://api.whatsapp.com/send?phone=8801613221379&text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%AC%E0%A7%9C%20%E0%A6%AA%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%95%E0%A7%87%E0%A6%9C%20%E0%A6%B8%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%B0%E0%A7%8D%E0%A6%95%E0%A7%87%20%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" class="buy-btn">মেসেজ দিন</a>
-        </div>
+        <div class="card"><img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo"><span class="coin-text">৫ কয়েন</span><p class="price" id="price2">...</p><a href="https://wa.me/8801613221379" class="buy-btn">অর্ডার দিন</a></div>
+        <div class="card"><img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo"><span class="coin-text">৭০ কয়েন</span><p class="price" id="price3">...</p><a href="https://wa.me/8801613221379" class="buy-btn">অর্ডার দিন</a></div>
+        <div class="card"><img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo"><span class="coin-text">৩৫০ কয়েন</span><p class="price" id="price4">...</p><a href="https://wa.me/8801613221379" class="buy-btn">অর্ডার দিন</a></div>
+        <div class="card"><img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo"><span class="coin-text">৭০০ কয়েন</span><p class="price" id="price5">...</p><a href="https://wa.me/8801613221379" class="buy-btn">অর্ডার দিন</a></div>
+        <div class="card"><img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo"><span class="coin-text">১,৪০০ কয়েন</span><p class="price" id="price6">...</p><a href="https://wa.me/8801613221379" class="buy-btn">অর্ডার দিন</a></div>
+        <div class="card"><img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo"><span class="coin-text">৩,৫০০ কয়েন</span><p class="price" id="price7">...</p><a href="https://wa.me/8801613221379" class="buy-btn">অর্ডার দিন</a></div>
+        <div class="card"><img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo"><span class="coin-text">৭,০০০ কয়েন</span><p class="price" id="price8">...</p><a href="https://wa.me/8801613221379" class="buy-btn">অর্ডার দিন</a></div>
+        <div class="card"><img src="https://i.ibb.co.com/vxVS7HMX/coin-logo.jpg" class="video-logo"><span class="coin-text">অন্যান্য</span><p class="price" id="price9">...</p><a href="https://wa.me/8801613221379" class="buy-btn">মেসেজ দিন</a></div>
     </div>
 
     <footer><p>&copy; 2026 TikTok Coin Store | Managed by Boss</p></footer>
+
+    <script>
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR6x_3L5mF2nF2vN4S8y4sH_m_P9z3S-5XzW1s_7XFzN2vM_Gz9sW9S_P9z3S-5XzW1s_7XFzN2vM_Gz/pub?output=csv';
+
+        async function fetchPrices() {
+            try {
+                const response = await fetch(sheetUrl);
+                const data = await response.text();
+                const rows = data.split('\n').map(row => row.split(','));
+
+                // ধামাকা অফার অন/অফ চেক (১১ নম্বর সারি: B11)
+                const status = rows[10] ? rows[10][1].trim().toUpperCase() : 'OFF';
+                document.getElementById('dhamaka-container').style.display = (status === 'ON') ? 'block' : 'none';
+
+                // দাম আপডেট (১ থেকে ৯ নম্বর অফার)
+                for(let i=1; i<=9; i++) {
+                    if(rows[i] && rows[i][1]) {
+                        document.getElementById('price' + i).innerText = rows[i][1].trim();
+                    }
+                }
+            } catch (e) { 
+                console.log("Error:", e); 
+            }
+        }
+        fetchPrices();
+    </script>
 </body>
 </html>
-
