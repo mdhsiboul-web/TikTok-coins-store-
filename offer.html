@@ -18,10 +18,7 @@
         .coin-text { font-size: 28px; font-weight: bold; color: #FFD700; }
         .price { font-size: 26px; color: #39ff14; font-weight: bold; margin: 15px 0; }
         .buy-btn { display: inline-block; background: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; }
-        
-        /* ধামাকা অফার কন্টেইনার - শুরুতে হাইড থাকবে */
         #dhamaka-container { width: 90%; max-width: 600px; margin: 30px auto; padding: 25px; background: #1e293b; border-radius: 20px; border: 3px solid #fe2c55; text-align: center; animation: rgbGlow 1.5s linear infinite; display: none; }
-        
         .order-btn { display: inline-block; margin-top: 15px; padding: 15px 35px; background-color: #fe2c55; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; }
         .old-price { text-decoration: line-through; color: #94a3b8; font-size: 18px; margin-left: 10px; }
         footer { margin-top: 50px; padding: 20px; background: #000; }
@@ -37,7 +34,10 @@
             <h2 style="color: #fe2c55;">🔥 ধামাকা অফার! 🔥</h2>
             <div class="coin-card">
                 <h3 style="color: #FFD700;">১০০০ কয়েন</h3>
-                <p class="price"><span id="price1">লোডিং...</span> <span class="old-price">৳ ১১০০</span></p>
+                <p class="price">
+                    <span id="price1">...</span> 
+                    <span class="old-price" id="old-price-val">...</span>
+                </p>
                 <a href="https://wa.me/8801613221379" class="order-btn">এখনই অর্ডার করুন</a>
             </div>
         </div>
@@ -55,7 +55,7 @@
     <footer><p>&copy; 2026 TikTok Coin Store | Managed by Boss</p></footer>
 
     <script>
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR6x_3L5mF2nF2vN4S8y4sH_m_P9z3S-5XzW1s_7XFzN2vM_Gz9sW9S_P9z3S-5XzW1s_7XFzN2vM_Gz/pub?output=csv';
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmGQAO-53SkCfG5Ti0qaJ3xeEHd_eQfGVdJ58nWZNCYBR7qXMK9vHKvvKBVVctD74U16SAXGJeh4NI/pub?output=csv';
 
         async function fetchPrices() {
             try {
@@ -63,19 +63,24 @@
                 const data = await response.text();
                 const rows = data.split('\n').map(row => row.split(','));
 
-                // ধামাকা অফার অন/অফ চেক (১১ নম্বর সারি: B11)
-                const status = rows[10] ? rows[10][1].trim().toUpperCase() : 'OFF';
-                document.getElementById('dhamaka-container').style.display = (status === 'ON') ? 'block' : 'none';
+                // ধামাকা অন/অফ (সারি ১১)
+                if (rows[10] && rows[10][1]) {
+                    const status = rows[10][1].trim().toUpperCase();
+                    document.getElementById('dhamaka-container').style.display = (status === 'ON') ? 'block' : 'none';
+                }
 
-                // দাম আপডেট (১ থেকে ৯ নম্বর অফার)
+                // ধামাকা অফারের কাটা দাম (সারি ১২)
+                if (rows[11] && rows[11][1]) {
+                    document.getElementById('old-price-val').innerText = rows[11][1].trim();
+                }
+
+                // সব প্যাকেজের বর্তমান দাম (সারি ২ থেকে ১০)
                 for(let i=1; i<=9; i++) {
                     if(rows[i] && rows[i][1]) {
                         document.getElementById('price' + i).innerText = rows[i][1].trim();
                     }
                 }
-            } catch (e) { 
-                console.log("Error:", e); 
-            }
+            } catch (e) { console.error(e); }
         }
         fetchPrices();
     </script>
