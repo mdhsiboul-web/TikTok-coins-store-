@@ -59,24 +59,30 @@
 
         async function fetchPrices() {
             try {
-                const response = await fetch(sheetUrl);
+                const response = await fetch(sheetUrl + '&t=' + new Date().getTime());
                 const data = await response.text();
                 const rows = data.split('\n').map(row => row.split(','));
 
-                // ধামাকা অন/অফ (সারি ১১)
+                // ১. ধামাকা অফার অন/অফ চেক (সারি ১১ - Index 10)
                 if (rows[10] && rows[10][1]) {
                     const status = rows[10][1].trim().toUpperCase();
                     document.getElementById('dhamaka-container').style.display = (status === 'ON') ? 'block' : 'none';
                 }
 
-                // ধামাকা অফারের কাটা দাম (সারি ১২)
+                // ২. ধামাকা অফারের কাটা দাম (সারি ১২ - Index 11)
                 if (rows[11] && rows[11][1]) {
                     document.getElementById('old-price-val').innerText = rows[11][1].trim();
                 }
 
-                // সব প্যাকেজের বর্তমান দাম (সারি ২ থেকে ১০)
-                for(let i=1; i<=9; i++) {
+                // ৩. ধামাকা অফারের বর্তমান দাম (সারি ২ - Index 1)
+                if (rows[1] && rows[1][1]) {
+                    document.getElementById('price1').innerText = rows[1][1].trim();
+                }
+
+                // ৪. বাকি ৮টি প্যাকেজের দাম (সারি ৩ থেকে ১০ - Index 2 to 9)
+                for(let i = 2; i <= 9; i++) {
                     if(rows[i] && rows[i][1]) {
+                        // price2 থেকে price9 আইডি আপডেট করবে
                         document.getElementById('price' + i).innerText = rows[i][1].trim();
                     }
                 }
@@ -85,4 +91,5 @@
         fetchPrices();
     </script>
 </body>
-</html>
+                                                                                                                                                 </html>
+                                                                                                                                                 
