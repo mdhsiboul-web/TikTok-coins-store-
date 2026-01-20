@@ -69,25 +69,24 @@
                 const data = await response.text();
                 const rows = data.split('\n').map(row => row.split(','));
 
-                // ১. ধামাকা অফার কন্ট্রোল (শিটের ১১ নম্বর সারি - Index 10)
-                const dhamakaStatus = rows[10][1]?.trim().toUpperCase();
-                document.getElementById('dhamaka-container').style.display = (dhamakaStatus === 'ON') ? 'block' : 'none';
+                // ধামাকা অফার (শিট সারি ১১ কন্ট্রোল করে - Index 10)
+                const dhamakaStatus = rows[10][2]?.trim().toUpperCase();
+                document.getElementById('dhamaka-container').style.display = (dhamakaStatus === 'TRUE') ? 'block' : 'none';
                 document.getElementById('price1').innerText = rows[1][1]?.trim();
                 document.getElementById('old-price-val').innerText = rows[11][1]?.trim();
 
-                // ২. ৫ কয়েন থেকে অন্যান্য প্যাকেজ কন্ট্রোল (শিটের ৩ থেকে ১০ নম্বর সারি)
+                // বাকি প্যাকেজ কন্ট্রোল (শিট সারি ৩ থেকে ১০)
                 for(let i = 2; i <= 9; i++) {
                     if(rows[i]) {
-                        const priceId = 'price' + i;
                         const cardId = 'card' + i;
-                        // শিটের ৩ নম্বর কলাম (C কলাম - Index 2) থেকে Status নিচ্ছে
-                        const status = rows[i][2]?.trim().toUpperCase(); 
+                        const priceId = 'price' + i;
+                        const status = rows[i][2]?.trim().toUpperCase(); // ৩ নম্বর কলাম থেকে TRUE/FALSE চেক করছে
                         
-                        if (status === 'OFF') {
-                            document.getElementById(cardId).style.display = 'none';
-                        } else {
+                        if (status === 'TRUE') {
                             document.getElementById(cardId).style.display = 'flex';
                             document.getElementById(priceId).innerText = rows[i][1]?.trim();
+                        } else {
+                            document.getElementById(cardId).style.display = 'none';
                         }
                     }
                 }
